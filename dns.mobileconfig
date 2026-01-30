@@ -4,7 +4,7 @@
 <plist version="1.0">
 <dict>
   <key>PayloadType</key>
-  <string>Configuration</string>
+  <string>DNS vuýp pờ rồ mắc</string>
 
   <key>PayloadVersion</key>
   <integer>1</integer>
@@ -16,7 +16,7 @@
   <string>11111111-2222-3333-4444-555555555555</string>
 
   <key>PayloadDisplayName</key>
-  <string>DNS Profile</string>
+  <string>DNS VIPPRO 😘</string>
 
   <key>PayloadContent</key>
   <array>
@@ -34,9 +34,9 @@
       <string>66666666-7777-8888-9999-000000000000</string>
 
       <key>PayloadDisplayName</key>
-      <string>Custom DNS</string>
+      <string>DNS VIPPROMAX</string>
 
-      <key>DNSSettings</key>
+      <key>DNS LOCKET</key>
       <dict>
         <key>DNSProtocol</key>
         <string>HTTPS</string>
@@ -48,3 +48,4 @@
   </array>
 </dict>
 </plist>
+
