@@ -1,7 +1,165 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Tải cấu hình DNS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --bg-dark: linear-gradient(135deg, #0f172a, #020617);
+      --bg-light: linear-gradient(135deg, #f8fafc, #e5e7eb);
+      --card-dark: rgba(15, 23, 42, 0.9);
+      --card-light: #ffffff;
+      --text-dark: #e5e7eb;
+      --text-light: #020617;
+      --sub-dark: #9ca3af;
+      --sub-light: #475569;
+      --btn: linear-gradient(135deg, #38bdf8, #0ea5e9);
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+   body {
+  margin: 0;
+  min-height: 100vh;
+  background: url("bg.gif") center / cover no-repeat fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e5e7eb;
+}
+
+
+    body.dark {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    body.light {
+      background: var(--bg-light);
+      color: var(--text-light);
+    }
+
+    .card {
+      border-radius: 20px;
+      padding: 32px;
+      max-width: 360px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+      transition: background 0.3s ease;
+    }
+
+    body.dark .card {
+      background: var(--card-dark);
+    }
+
+    body.light .card {
+      background: var(--card-light);
+    }
+
+    .icon {
+      font-size: 46px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 14px;
+      margin-bottom: 26px;
+      line-height: 1.5;
+    }
+
+    body.dark p { color: var(--sub-dark); }
+    body.light p { color: var(--sub-light); }
+
+    a.button {
+      display: block;
+      text-decoration: none;
+      background: var(--btn);
+      color: #020617;
+      padding: 14px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 16px;
+      box-shadow: 0 10px 25px rgba(56,189,248,0.4);
+    }
+
+    .note {
+      margin-top: 18px;
+      font-size: 12px;
+      opacity: 0.8;
+    }
+
+    .theme-switch {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .theme-switch button {
+      border: none;
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-size: 13px;
+      cursor: pointer;
+      background: rgba(148,163,184,0.15);
+      color: inherit;
+    }
+  </style>
+</head>
+
 <body>
-<h3>Tải cấu hình DNS</h3>
-<a href="dns.mobileconfig">Bấm vào đây để tải</a>
+  <div class="card">
+    <div class="theme-switch">
+      <button onclick="setTheme('light')">☀️</button>
+      <button onclick="setTheme('dark')">🌙</button>
+      <button onclick="setTheme('auto')">🌓</button>
+    </div>
+
+    <div class="icon">📡</div>
+    <h1>Cấu hình DNS cho iPhone</h1>
+    <p>
+      Nhấn nút bên dưới để tải cấu hình DNS.<br>
+      Khuyến nghị mở bằng <b>Safari</b>.
+    </p>
+
+    <a class="button" href="dns.mobileconfig">
+      ⬇️ Tải cấu hình DNS
+    </a>
+
+    <div class="note">
+      Sau khi tải → vào <b>Cài đặt</b> để cài profile
+    </div>
+  </div>
+
+  <script>
+    function applyTheme(theme) {
+      document.body.classList.remove('light', 'dark');
+      if (theme === 'auto') {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.body.classList.add(prefersDark ? 'dark' : 'light');
+      } else {
+        document.body.classList.add(theme);
+      }
+    }
+
+    function setTheme(theme) {
+      localStorage.setItem('theme', theme);
+      applyTheme(theme);
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'auto';
+    applyTheme(savedTheme);
+  </script>
 </body>
 </html>
