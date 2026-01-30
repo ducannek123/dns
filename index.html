@@ -6,6 +6,14 @@
 <title>DNS VUÝP PỜ RỒ</title>
 
 <style>
+#copyBtn {
+  padding: 6px 12px;
+  cursor: pointer;
+}
+#copyBtn.copied {
+  background: #22c55e;
+  color: #fff;
+}
 * {
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -301,10 +309,11 @@ h1 {
     </ul>
 
     <div class="copy-row">
-      <input id="dnsLink" readonly
-        value="https://raw.githubusercontent.com/DungHoang120401/Nobita/refs/heads/main/Module/CS/dns.mobileconfig">
-      <button id="copyBtn" onclick="copyDNS()">Copy</button>
-    </div>
+  <input id="dnsLink" readonly
+    value="https://raw.githubusercontent.com/DungHoang120401/Nobita/refs/heads/main/Module/CS/dns.mobileconfig">
+  <button id="copyBtn" onclick="copyDNS()">Copy</button>
+</div>
+
   </div>
 
   <!-- MUSIC BOX -->
@@ -355,6 +364,26 @@ h1 {
   </div>
 </div>
 <script>
+function copyDNS() {
+  const input = document.getElementById("dnsLink");
+  const btn = document.getElementById("copyBtn");
+
+  input.removeAttribute("readonly");
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  input.setAttribute("readonly", true);
+
+  btn.classList.add("copied");
+  btn.innerText = "Copied!";
+  btn.disabled = true;
+
+  setTimeout(() => {
+    btn.classList.remove("copied");
+    btn.innerText = "Copy";
+    btn.disabled = false;
+  }, 2000);
+}
 /* ===== PLAYLIST ===== */
 const playlist = [
   { title: "PHÉP MÀU", file: "music1.mp3" },
