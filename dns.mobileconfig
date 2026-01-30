@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+ "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>PayloadType</key>
+  <string>Configuration</string>
+
+  <key>PayloadVersion</key>
+  <integer>1</integer>
+
+  <key>PayloadIdentifier</key>
+  <string>dns.profile.example</string>
+
+  <key>PayloadUUID</key>
+  <string>11111111-2222-3333-4444-555555555555</string>
+
+  <key>PayloadDisplayName</key>
+  <string>DNS Profile</string>
+
+  <key>PayloadContent</key>
+  <array>
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.dnsSettings.managed</string>
+
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+
+      <key>PayloadIdentifier</key>
+      <string>dns.settings.example</string>
+
+      <key>PayloadUUID</key>
+      <string>66666666-7777-8888-9999-000000000000</string>
+
+      <key>PayloadDisplayName</key>
+      <string>Custom DNS</string>
+
+      <key>DNSSettings</key>
+      <dict>
+        <key>DNSProtocol</key>
+        <string>HTTPS</string>
+
+        <key>ServerURL</key>
+        <string>https://dns.nextdns.io/8a922e</string>
+      </dict>
+    </dict>
+  </array>
+</dict>
+</plist>
