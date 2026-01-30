@@ -1,53 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
- "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <key>PayloadType</key>
-  <string>Configuration</string>
-
-  <key>PayloadVersion</key>
-  <integer>1</integer>
-
-  <key>PayloadIdentifier</key>
-  <string>dns.profile.vippro</string>
-
-  <key>PayloadUUID</key>
-  <string>11111111-2222-3333-4444-555555555555</string>
-
-  <key>PayloadDisplayName</key>
-  <string>DNS VIPPRO</string>
-
-  <key>PayloadContent</key>
-  <array>
-    <dict>
-      <key>PayloadType</key>
-      <string>com.apple.dnsSettings.managed</string>
-
-      <key>PayloadVersion</key>
-      <integer>1</integer>
-
-      <key>PayloadIdentifier</key>
-      <string>dns.settings.locket</string>
-
-      <key>PayloadUUID</key>
-      <string>66666666-7777-8888-9999-000000000000</string>
-
-      <key>PayloadDisplayName</key>
-      <string>DNS LOCKET</string>
-
-      <key>PayloadDescription</key>
-      <string>😘</string>
-
-      <key>DNSSettings</key>
-      <dict>
-        <key>DNSProtocol</key>
-        <string>HTTPS</string>
-
-        <key>ServerURL</key>
-        <string>https://dns.nextdns.io/8a922e</string>
-      </dict>
-    </dict>
-  </array>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>DNSSettings</key>
+            <dict>
+                <key>DNSProtocol</key>
+                <string>HTTPS</string>
+                <key>ServerURL</key>
+                <string>https://dns.nextdns.io/8a922e</string>
+            </dict>
+            <key>PayloadDescription</key>
+            <string>DNS LOCKET</string>
+            <key>PayloadDisplayName</key>
+            <string>AN VUÝP PỜ RỒ</string>
+            <key>PayloadIdentifier</key>
+            <string>com.user.network.dns</string>
+            <key>PayloadType</key>
+            <string>com.apple.dnsSettings.managed</string>
+            <key>PayloadUUID</key>
+            <string>8A9F0C3D-1234-4B9E-ABCD-123456789001</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+        </dict>
+    </array>
+    <key>PayloadDescription</key>
+    <string>DNS chặn thu hồi gold</string>
+    <key>PayloadDisplayName</key>
+    <string>🍎🐷</string>
+    <key>PayloadIdentifier</key>
+    <string>com.user.network.profile</string>
+    <key>PayloadOrganization</key>
+    <string>User</string>
+    <key>PayloadRemovalDisallowed</key>
+    <false/>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>9B1D2E3F-5678-4ABC-DEF0-123456789002</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
 </dict>
 </plist>
