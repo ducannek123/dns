@@ -1,197 +1,466 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>DNS chặn thu hồi LOCKET</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DNS VUÝP PỜ RỒ</title>
 
-  <style>
-    :root {
-      --bg-dark: linear-gradient(135deg, #0f172a, #020617);
-      --bg-light: linear-gradient(135deg, #f8fafc, #e5e7eb);
-      --card-dark: rgba(15, 23, 42, 0.9);
-      --card-light: #ffffff;
-      --text-dark: #e5e7eb;
-      --text-light: #020617;
-      --sub-dark: #9ca3af;
-      --sub-light: #475569;
-      --btn: linear-gradient(135deg, #38bdf8, #0ea5e9);
-    }
-
-    * {
-      box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
-
-   body {
-  margin: 0;
-  min-height: 100vh;
-  background: url("bg.gif") center / cover no-repeat fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #e5e7eb;
+<style>
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-
-    body.dark {
-      background: var(--bg-dark);
-      color: var(--text-dark);
-    }
-
-    body.light {
-      background: var(--bg-light);
-      color: var(--text-light);
-    }
-
-    .card {
-      border-radius: 20px;
-      padding: 32px;
-      max-width: 360px;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
-      transition: background 0.3s ease;
-    }
-
-    body.dark .card {
-      background: var(--card-dark);
-    }
-
-    body.light .card {
-      background: var(--card-light);
-    }
-
-    .icon {
-      font-size: 46px;
-      margin-bottom: 12px;
-    }
-
-    h1 {
-      font-size: 22px;
-      margin-bottom: 8px;
-    }
-
-    p {
-      font-size: 14px;
-      margin-bottom: 26px;
-      line-height: 1.5;
-    }
-
-    body.dark p { color: var(--sub-dark); }
-    body.light p { color: var(--sub-light); }
-
-    a.button {
-      display: block;
-      text-decoration: none;
-      background: var(--btn);
-      color: #020617;
-      padding: 14px;
-      border-radius: 14px;
-      font-weight: 600;
-      font-size: 16px;
-      box-shadow: 0 10px 25px rgba(56,189,248,0.4);
-    }
-
-    .note {
-      margin-top: 18px;
-      font-size: 12px;
-      opacity: 0.8;
-    }
-
-    .theme-switch {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .theme-switch button {
-      border: none;
-      border-radius: 10px;
-      padding: 6px 10px;
-      font-size: 13px;
-      cursor: pointer;
-      background: rgba(148,163,184,0.15);
-      color: inherit;
-    }
-    .bg-video {
+/* ===== VIDEO BACKGROUND ===== */
+.video-bg {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   z-index: -2;
 }
 
-body::before {
-  content: "";
+.overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0,0,0,.35);
   z-index: -1;
 }
 
-  </style>
+/* ===== LAYOUT ===== */
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* ===== CARD ===== */
+.card {
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(14px);
+  border-radius: 28px;
+  padding: 26px 22px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,.35);
+}
+
+.icon {
+  font-size: 48px;
+}
+
+h1 {
+  margin: 10px 0 6px;
+  font-size: 22px;
+}
+
+.desc {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* ===== DOWNLOAD BUTTON ===== */
+.download-btn {
+  margin-top: 18px;
+  display: block;
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  border-radius: 14px;
+  text-decoration: none;
+  box-shadow: 0 10px 25px rgba(0,0,0,.3);
+}
+
+.note {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #666;
+}
+
+/* ===== EXTRA BOX ===== */
+.extra-box {
+  margin-top: 20px;
+  padding: 18px;
+  background: rgba(255,255,255,.88);
+  backdrop-filter: blur(12px);
+  border-radius: 22px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.25);
+}
+
+.extra-box h3 {
+  margin: 0 0 10px;
+  text-align: center;
+}
+
+.extra-box ul {
+  padding-left: 18px;
+  font-size: 14px;
+}
+
+/* ===== COPY BOX ===== */
+.copy-row {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.copy-row input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: none;
+  font-size: 13px;
+  background: #f1f5f9;
+}
+
+.copy-row button {
+  min-width: 90px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  cursor: pointer;
+  transition: .2s;
+}
+
+.copy-row button.copied {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+/* ===== MUSIC BOX ===== */
+.music-box {
+  margin: 16px auto 0;
+  width: 100%;
+  max-width: 360px;
+  background: linear-gradient(180deg, #1e232d, #141821);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 14px 30px rgba(0,0,0,.35);
+  font-family: "Courier New", monospace;
+}
+
+/* HEADER */
+.music-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: rgba(255,255,255,.05);
+  font-size: 14px;
+  color: #cfd8ff;
+}
+
+.music-header .title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.music-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 5px;
+}
+.music-dots span:nth-child(1){background:#facc15;}
+.music-dots span:nth-child(2){background:#22c55e;}
+.music-dots span:nth-child(3){background:#ef4444;}
+
+/* TERMINAL */
+.music-terminal {
+  padding: 6px 14px;
+  font-size: 12px;
+  background: #0b0f17;
+  color: #22ff88;
+}
+
+/* TRACK */
+.music-track {
+  padding: 8px 14px;
+  font-size: 13px;
+  color: #60a5fa;
+  background: rgba(0,0,0,.35);
+}
+
+/* CONTROLS */
+.music-controls {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  background: rgba(255,255,255,.04);
+}
+
+.music-controls button {
+  flex: 1;
+  padding: 7px 0;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255,255,255,.08);
+  color: #e5e7eb;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.music-controls button.play {
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0 6px 16px rgba(59,130,246,.5);
+}
+/* ===== SUPPORT CHAT BUBBLE ===== */
+.support-bubble {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1877f2, #42a5f5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 26px;
+  text-decoration: none;
+  box-shadow: 0 12px 30px rgba(24,119,242,.6);
+  z-index: 9999;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.support-bubble:hover {
+  transform: scale(1.08);
+  box-shadow: 0 16px 40px rgba(24,119,242,.8);
+}
+
+/* hiệu ứng nhấp nháy nhẹ */
+.support-bubble::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(24,119,242,.5);
+  animation: pulse 1.6s infinite;
+}
+
+@keyframes pulse {
+  0%   { transform: scale(1); opacity: .8; }
+  100% { transform: scale(1.25); opacity: 0; }
+}
+
+</style>
 </head>
 
 <body>
-  <video autoplay muted loop playsinline class="bg-video">
+
+<!-- VIDEO BACKGROUND -->
+<video class="video-bg" autoplay muted loop playsinline>
   <source src="bg.mp4" type="video/mp4">
 </video>
+<div class="overlay"></div>
 
+<div class="container">
+
+  <!-- MAIN CARD -->
   <div class="card">
-    <div class="theme-switch">
-      <button onclick="setTheme('light')">☀️</button>
-      <button onclick="setTheme('dark')">🌙</button>
-      <button onclick="setTheme('auto')">🌓</button>
-    </div>
-
-    <div class="icon">📡</div>
-    <h1>🍎🐷</h1>
-    <p>
-      Nhấn nút bên dưới để tải cấu hình DNS.<br>
-      Khuyến nghị mở bằng <b>Safari</b>.
+    <div class="icon">🍎</div>
+    <h1>DNS chặn thu hồi LocketGold</h1>
+    <p class="desc">
+      ⬇️ Nhấn để tải cấu hình DNS<br>
+      <b>Khuyến nghị mở bằng Safari</b>
     </p>
 
-    <a class="button" href="dns.mobileconfig">
-      ⬇️ Click vào để tải 😘
+    <a class="download-btn" href="dns.mobileconfig">
+      ⬇️ Tải cấu hình DNS
     </a>
 
     <div class="note">
-      Sau khi tải → vào <b>Cài đặt</b> để cài profile
+      Sau khi tải → vào <b>Cài đặt → VPN & Quản lý thiết bị</b>
     </div>
   </div>
-  <!-- Extra Section -->
-<div class="extra-box">
-  <h3>📌 Lưu ý khi cài DNS</h3>
-  <ul>
-    <li>🔹 Chỉ cài profile từ nguồn bạn tin tưởng</li>
-    <li>🔹 Sau khi cài → vào <b>Cài đặt → Quản lý VPN & thiết bị</b></li>
-    <li>🔹 Nếu không thấy profile, hãy mở lại link bằng <b>Safari</b></li>
-    <li>🔹 DNS có thể tắt bất cứ lúc nào trong Cài đặt</li>
-  </ul>
+
+  <!-- NOTE + COPY -->
+  <div class="extra-box">
+    <h3>📌 Lưu ý</h3>
+    <ul>
+      <li>Chỉ cài profile từ nguồn tin cậy</li>
+      <li>Không thấy profile → mở lại bằng Safari</li>
+    </ul>
+
+    <div class="copy-row">
+      <input id="dnsLink" readonly
+        value="https://raw.githubusercontent.com/DungHoang120401/Nobita/refs/heads/main/Module/CS/dns.mobileconfig">
+      <button id="copyBtn" onclick="copyDNS()">Copy</button>
+    </div>
+  </div>
+
+  <!-- MUSIC BOX -->
+<audio id="musicPlayer" preload="auto"></audio>
+
+<div class="music-box">
+  <div class="music-header">
+    <div class="title">🎵 MUSIC.EXE</div>
+    <div class="music-dots">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <div class="music-terminal">
+    SYSTEM: <span id="musicStatus">PAUSED</span> _
+  </div>
+
+  <div class="music-track" id="musicTitle">
+    1. PHÉP MÀU
+  </div>
+
+  <!-- TIME -->
+  <div style="padding:6px 14px;font-size:12px;color:#94a3b8">
+    <span id="currentTime">0:00</span> /
+    <span id="duration">0:00</span>
+  </div>
+
+  <!-- VOLUME -->
+  <div style="padding:0 14px 8px">
+    🔊
+    <input type="range" min="0" max="1" step="0.01" value="0.8"
+      id="volumeSlider" style="width:100%">
+  </div>
+
+  <!-- PLAYLIST -->
+  <select id="playlistSelect"
+    style="margin:0 14px 10px;width:calc(100% - 28px);
+    background:#0b0f17;color:#60a5fa;border:none;
+    padding:6px;border-radius:8px">
+  </select>
+
+  <div class="music-controls">
+    <button onclick="musicPrev()">|&lt;</button>
+    <button onclick="musicSeek(-5)">-5s</button>
+    <button id="playBtn" class="play" onclick="toggleMusic()">PLAY</button>
+    <button onclick="musicSeek(5)">+5s</button>
+    <button onclick="musicNext()">&gt;|</button>
+  </div>
 </div>
+<script>
+/* ===== PLAYLIST ===== */
+const playlist = [
+  { title: "PHÉP MÀU", file: "music1.mp3" },
+  { title: "NƠI NÀY CÓ ANH", file: "music2.mp3" },
+  { title: "KHÔNG BUÔNG", file: "music3.mp3" }
+];
 
-  <script>
-    function applyTheme(theme) {
-      document.body.classList.remove('light', 'dark');
-      if (theme === 'auto') {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        document.body.classList.add(prefersDark ? 'dark' : 'light');
-      } else {
-        document.body.classList.add(theme);
-      }
-    }
+let currentIndex = 0;
 
-    function setTheme(theme) {
-      localStorage.setItem('theme', theme);
-      applyTheme(theme);
-    }
+/* ===== ELEMENTS ===== */
+const player = document.getElementById("musicPlayer");
+const status = document.getElementById("musicStatus");
+const playBtn = document.getElementById("playBtn");
+const titleBox = document.getElementById("musicTitle");
+const curTime = document.getElementById("currentTime");
+const durTime = document.getElementById("duration");
+const volumeSlider = document.getElementById("volumeSlider");
+const playlistSelect = document.getElementById("playlistSelect");
 
-    const savedTheme = localStorage.getItem('theme') || 'auto';
-    applyTheme(savedTheme);
-  </script>
+/* ===== FORMAT TIME ===== */
+function formatTime(sec) {
+  if (isNaN(sec)) return "0:00";
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60).toString().padStart(2, "0");
+  return `${m}:${s}`;
+}
+
+/* ===== LOAD SONG ===== */
+function loadSong(index, autoplay = false) {
+  const song = playlist[index];
+  player.src = song.file;
+  titleBox.innerText = `${index + 1}. ${song.title}`;
+  playlistSelect.value = index;
+  status.innerText = "PAUSED";
+  playBtn.innerText = "PLAY";
+
+  if (autoplay) {
+    player.play();
+    status.innerText = "PLAYING";
+    playBtn.innerText = "PAUSE";
+  }
+}
+
+/* ===== INIT PLAYLIST ===== */
+playlist.forEach((song, i) => {
+  const opt = document.createElement("option");
+  opt.value = i;
+  opt.textContent = `${i + 1}. ${song.title}`;
+  playlistSelect.appendChild(opt);
+});
+
+/* ===== EVENTS ===== */
+playlistSelect.onchange = () => {
+  currentIndex = Number(playlistSelect.value);
+  loadSong(currentIndex, true);
+};
+
+player.addEventListener("timeupdate", () => {
+  curTime.innerText = formatTime(player.currentTime);
+  durTime.innerText = formatTime(player.duration);
+});
+
+player.addEventListener("ended", () => {
+  musicNext(); // 🔁 AUTO NEXT
+});
+
+volumeSlider.oninput = () => {
+  player.volume = volumeSlider.value;
+};
+
+/* ===== CONTROLS ===== */
+function toggleMusic() {
+  if (player.paused) {
+    player.play();
+    status.innerText = "PLAYING";
+    playBtn.innerText = "PAUSE";
+  } else {
+    player.pause();
+    status.innerText = "PAUSED";
+    playBtn.innerText = "PLAY";
+  }
+}
+
+function musicSeek(sec) {
+  player.currentTime += sec;
+}
+
+function musicPrev() {
+  currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+  loadSong(currentIndex, true);
+}
+
+function musicNext() {
+  currentIndex = (currentIndex + 1) % playlist.length;
+  loadSong(currentIndex, true);
+}
+
+/* INIT */
+player.volume = volumeSlider.value;
+loadSong(currentIndex);
+</script>
+<a href="https://www.facebook.com/annguyen161207"
+   target="_blank"
+   class="support-bubble"
+   aria-label="Hỗ trợ Facebook">
+  💬
+</a>
 </body>
 </html>
